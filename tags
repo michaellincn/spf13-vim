@@ -1,0 +1,14 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+create_symlinks	/data1/code/spf13-vim/spf13-vim-install.sh	/^create_symlinks() {$/;"	f	language:Sh
+debug	/data1/code/spf13-vim/spf13-vim-install.sh	/^debug() {$/;"	f	language:Sh
+do_backup	/data1/code/spf13-vim/spf13-vim-install.sh	/^do_backup() {$/;"	f	language:Sh
+error	/data1/code/spf13-vim/spf13-vim-install.sh	/^error() {$/;"	f	language:Sh
+lnif	/data1/code/spf13-vim/spf13-vim-install.sh	/^lnif() {$/;"	f	language:Sh
+msg	/data1/code/spf13-vim/spf13-vim-install.sh	/^msg() {$/;"	f	language:Sh
+program_exists	/data1/code/spf13-vim/spf13-vim-install.sh	/^program_exists() {$/;"	f	language:Sh
+program_must_exist	/data1/code/spf13-vim/spf13-vim-install.sh	/^program_must_exist() {$/;"	f	language:Sh
+setup_fork_mode	/data1/code/spf13-vim/spf13-vim-install.sh	/^setup_fork_mode() {$/;"	f	language:Sh
+setup_vundle	/data1/code/spf13-vim/spf13-vim-install.sh	/^setup_vundle() {$/;"	f	language:Sh
+success	/data1/code/spf13-vim/spf13-vim-install.sh	/^success() {$/;"	f	language:Sh
+sync_repo	/data1/code/spf13-vim/spf13-vim-install.sh	/^sync_repo() {$/;"	f	language:Sh
+variable_set	/data1/code/spf13-vim/spf13-vim-install.sh	/^variable_set() {$/;"	f	language:Sh
