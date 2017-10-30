@@ -21,6 +21,7 @@ app_name='spf13-vim'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='3.0'
 debug_mode='0'
 fork_maintainer='1'
+local_maintainer='1'
 [ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
 
 ############################  BASIC SETUP TOOLS
@@ -157,6 +158,28 @@ setup_fork_mode() {
     fi
 }
 
+setup_local_mode() {
+    local source_path="$2"
+    local target_path="$3"
+
+    if [ "$1" -eq '1' ]; then
+        touch "$target_path/.vimrc.local"
+        touch "$target_path/.vimrc.bundles.local"
+        touch "$target_path/.vimrc.before.local"
+        touch "$target_path/.gvimrc.local"
+
+        lnif "$source_path/.vimrc.local"         "$target_path/.vimrc.local"
+        lnif "$source_path/.vimrc.bundles.local" "$target_path/.vimrc.bundles.local"
+        lnif "$source_path/.vimrc.before.local"  "$target_path/.vimrc.before.local"
+        lnif "$source_path/.gvimrc.local"  "$target_path/.gvimrc.local"
+
+        ret="$?"
+        success "Created fork maintainer files."
+        debug
+    fi
+}
+
+
 setup_vundle() {
     local system_shell="$SHELL"
     export SHELL='/bin/sh'
@@ -194,6 +217,11 @@ create_symlinks "$APP_PATH" \
 setup_fork_mode "$fork_maintainer" \
                 "$APP_PATH" \
                 "$HOME"
+
+setup_local_mode "$local_maintainer" \
+                "$APP_PATH" \
+                "$HOME"
+
 
 sync_repo       "$HOME/.vim/bundle/vundle" \
                 "$VUNDLE_URI" \

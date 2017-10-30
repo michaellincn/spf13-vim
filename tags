@@ -8,6 +8,7 @@ msg	/data1/code/spf13-vim/spf13-vim-install.sh	/^msg() {$/;"	f	language:Sh
 program_exists	/data1/code/spf13-vim/spf13-vim-install.sh	/^program_exists() {$/;"	f	language:Sh
 program_must_exist	/data1/code/spf13-vim/spf13-vim-install.sh	/^program_must_exist() {$/;"	f	language:Sh
 setup_fork_mode	/data1/code/spf13-vim/spf13-vim-install.sh	/^setup_fork_mode() {$/;"	f	language:Sh
+setup_local_mode	/data1/code/spf13-vim/spf13-vim-install.sh	/^setup_local_mode() {$/;"	f	language:Sh
 setup_vundle	/data1/code/spf13-vim/spf13-vim-install.sh	/^setup_vundle() {$/;"	f	language:Sh
 success	/data1/code/spf13-vim/spf13-vim-install.sh	/^success() {$/;"	f	language:Sh
 sync_repo	/data1/code/spf13-vim/spf13-vim-install.sh	/^sync_repo() {$/;"	f	language:Sh
