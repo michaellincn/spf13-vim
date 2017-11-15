@@ -1,0 +1,12 @@
+"启动窗口最大化
+set nu
+au GUIENTER * simalt ~x
+
+"解决菜单中文乱码
+set guifont="Consolas 14"
+
+"字体和大小
+autocmd VimEnter * set guifont=Consolas:h16:cANSI
+
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim

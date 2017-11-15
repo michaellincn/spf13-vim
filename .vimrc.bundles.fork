@@ -1,0 +1,4 @@
+if executable('ctags')
+    Bundle 'xolox/vim-misc'
+    Bundle 'xolox/vim-easytags'
+endif

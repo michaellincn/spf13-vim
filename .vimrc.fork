@@ -1,0 +1,87 @@
+"michael begin
+"
+" multi-encoding setting
+if has("multi_byte")
+  "set bomb
+  set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,latin1
+  " CJK environment detection and corresponding setting
+  if v:lang =~ "^zh_CN"
+    " Use cp936 to support GBK, euc-cn == gb2312
+    set encoding=cp936
+    set termencoding=cp936
+    set fileencoding=cp936
+  elseif v:lang =~ "^zh_TW"
+    " cp950, big5 or euc-tw
+    " Are they equal to each other?
+    set encoding=big5
+    set termencoding=big5
+    set fileencoding=big5
+  elseif v:lang =~ "^ko"
+    " Copied from someone's dotfile, untested
+    set encoding=euc-kr
+    set termencoding=euc-kr
+    set fileencoding=euc-kr
+  elseif v:lang =~ "^ja_JP"
+    " Copied from someone's dotfile, untested
+    set encoding=euc-jp
+    set termencoding=euc-jp
+    set fileencoding=euc-jp
+  endif
+  " Detect UTF-8 locale, and replace CJK setting if needed
+  if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+    set encoding=utf-8
+    set termencoding=utf-8
+    set fileencoding=utf-8
+  endif
+else
+  echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
+endif
+
+"michael {
+
+    "关闭拼写检查
+    autocmd VimEnter * set nospell
+    "开启256色
+    set t_Co=256
+    "配置方案
+    colorscheme desert
+
+    "空字符显示开关
+    set nolist
+
+    "显示列号
+    set ruler
+
+    "显示列游标
+    "set cuc
+
+    "显示行游标
+    "set cul
+
+    "设置80列标
+    set cc=80
+
+    "快捷键
+    nmap <F8> :TagbarToggle<CR>
+
+    "easytags 设置
+    set tags=./tags;
+    let g:easytags_dynamic_files = 2
+    let g:easytags_by_filetype = 1
+    "let g:easytags_async = 1
+    "let g:easytags_updatetime_min = 3000
+    "let g:easytags_syntax_keyword = 'always'
+    let g:easytags_include_members = 1
+    "let g:easytags_events = ['BufWritePost']
+    "let g:easytags_always_enabled = 1
+    "let g:easytags_on_cursorhold = 1
+    "let g:easytags_auto_update = 0
+    "let g:easytags_auto_highlight = 0
+    "let g:easytags_autorecurse = 1
+    "let g:easytags_resolve_links = 1
+    "let g:easytags_suppress_ctags_warning = 1
+    "let g:easytags_suppress_report = 1
+    "let g:easytags_file=
+    "let g:easytags_cmd
+    "let g:easytags_opts = ['-R --languages=C++,C']
+    "}
