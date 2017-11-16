@@ -74,7 +74,8 @@
 " Bundles {
 
     " Deps {
-        Bundle 'gmarik/vundle'
+        " Bundle 'gmarik/vundle'
+        Bundle 'VundleVim/Vundle'
         Bundle 'MarcWeber/vim-addon-mw-utils'
         Bundle 'tomtom/tlib_vim'
         if executable('ag')
