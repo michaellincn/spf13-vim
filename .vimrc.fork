@@ -1,87 +1,60 @@
-"michael begin
-"
-" multi-encoding setting
-if has("multi_byte")
-  "set bomb
-  set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,latin1
-  " CJK environment detection and corresponding setting
-  if v:lang =~ "^zh_CN"
-    " Use cp936 to support GBK, euc-cn == gb2312
-    set encoding=cp936
-    set termencoding=cp936
-    set fileencoding=cp936
-  elseif v:lang =~ "^zh_TW"
-    " cp950, big5 or euc-tw
-    " Are they equal to each other?
-    set encoding=big5
-    set termencoding=big5
-    set fileencoding=big5
-  elseif v:lang =~ "^ko"
-    " Copied from someone's dotfile, untested
-    set encoding=euc-kr
-    set termencoding=euc-kr
-    set fileencoding=euc-kr
-  elseif v:lang =~ "^ja_JP"
-    " Copied from someone's dotfile, untested
-    set encoding=euc-jp
-    set termencoding=euc-jp
-    set fileencoding=euc-jp
-  endif
-  " Detect UTF-8 locale, and replace CJK setting if needed
-  if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-    set encoding=utf-8
-    set termencoding=utf-8
-    set fileencoding=utf-8
-  endif
-else
-  echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
+let g:DisableAutoPHPFolding = 1
+
+let NERDTreeQuitOnOpen = 0
+set nospell
+
+if has('gui_running')
+    color desert
+    if has("gui_gtk2")
+        set guifont=Andale\ Mono\ Regular\ 11,Menlo\ Regular\ 10,Consolas\ Regular\ 11,Courier\ New\ Regular\ 13
+    else
+        set guifont=Andale\ Mono\ Regular:h14,Menlo\ Regular:h13,Consolas\ Regular:h14,Courier\ New\ Regular:h16
+    endif
+    if has('gui_macvim')
+        set transparency=2          " Make the window slightly transparent
+    endif
 endif
 
-"michael {
+" ShowMarks {
+    let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    " Don't leave on by default, use :ShowMarksOn to enable
+    let g:showmarks_enable = 0
+    " For marks a-z
+    highlight ShowMarksHLl gui=bold guibg=LightBlue guifg=Blue
+    " For marks A-Z
+    highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
+    " For all other marks
+    highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
+    " For multiple marks on the same line.
+    highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
+" }
+set autoread                    " automatically reads, helpful when VCS may have changed the file
 
-    "关闭拼写检查
-    autocmd VimEnter * set nospell
-    "开启256色
-    set t_Co=256
-    "配置方案
-    colorscheme desert
+" NERDTree {
+    let g:nerdtree_tabs_open_on_gui_startup=1
+    let g:nerdtree_tabs_open_on_new_tab=1
+    let NERDTreeMouseMode=1
+" }
 
-    "空字符显示开关
-    set nolist
+" Make sure escape always takes you out of neocomplettion mode
+    iunmap <expr> <Esc>
 
-    "显示列号
-    set ruler
+" Configure typescript completion
 
-    "显示列游标
-    "set cuc
+autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
-    "显示行游标
-    "set cul
+set nocompatible
+set completeopt+=menuone
+set rtp+=~/.vim/bundle/neocomplete.vim/
+set rtp+=~/.vim/bundle/vimproc.vim/
+set rtp+=~/.cache/neocomplete/tsuquyomi/
 
-    "设置80列标
-    set cc=80
+filetype plugin indent on
+let g:neocomplete#enable_at_startup = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 
-    "快捷键
-    nmap <F8> :TagbarToggle<CR>
-
-    "easytags 设置
-    set tags=./tags;
-    let g:easytags_dynamic_files = 2
-    let g:easytags_by_filetype = 1
-    "let g:easytags_async = 1
-    "let g:easytags_updatetime_min = 3000
-    "let g:easytags_syntax_keyword = 'always'
-    let g:easytags_include_members = 1
-    "let g:easytags_events = ['BufWritePost']
-    "let g:easytags_always_enabled = 1
-    "let g:easytags_on_cursorhold = 1
-    "let g:easytags_auto_update = 0
-    "let g:easytags_auto_highlight = 0
-    "let g:easytags_autorecurse = 1
-    "let g:easytags_resolve_links = 1
-    "let g:easytags_suppress_ctags_warning = 1
-    "let g:easytags_suppress_report = 1
-    "let g:easytags_file=
-    "let g:easytags_cmd
-    "let g:easytags_opts = ['-R --languages=C++,C']
-    "}
+set tags=./tags;
