@@ -37,7 +37,7 @@ set autoread                    " automatically reads, helpful when VCS may have
 " }
 
 " Make sure escape always takes you out of neocomplettion mode
-    iunmap <expr> <Esc>
+    "iunmap <expr> <Esc>
 
 " Configure typescript completion
 
@@ -57,4 +57,63 @@ if !exists('g:neocomplete#force_omni_input_patterns')
 endif
 let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 
-set tags=./tags;
+" tags conf
+set autochdir
+set tags=tags;
+"tagbar conf
+nmap <F8> :TagbarToggle<CR>
+
+if has("cscope")
+    set csprg=/usr/local/app/cscope/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+        " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
+
+    "跳到定义
+    nmap ff <c-]>
+    "返回
+    nmap ss <c-t>
+
+    "s:查找即查找C语言符号出现的地方
+    nmap fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+    "g:查找函数、宏、枚举等定义的位置
+    nmap fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+    "c:查找光标下的函数被调用的地方
+    nmap fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+    "t: 查找指定的字符串出现的地方
+    nmap ft :cs find t <C-R>=expand("<cword>")<CR><CR>
+    "e:egrep模式查找,相当于egrep功能
+    nmap fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+    "f: 查找文件名,相当于lookupfile
+    nmap fn :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    "i: 查找当前文件名出现过的地方
+    nmap fi :cs find i <C-R>=expand("<cfile>")<CR><CR>
+    "d: 查找本当前函数调用的函数
+    nmap fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+    "quickfix
+    set cscopequickfix=s-,g-,c-,t-,e-,f-,i-,d-
+
+endif
+
+colorscheme desert
+set encoding=utf-8
+
+let g:indent_guides_enable_on_vim_startup = 1 
+let g:indent_guides_auto_colors = 0 
+let g:indent_guides_guide_size = 1 
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=darkgrey ctermbg=252
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=251
+
+let g:nerdtree_tabs_open_on_console_startup=1
+
+nnoremap <A-n> :tabn <CR>
+nnoremap <A-p> :tabp <CR>
