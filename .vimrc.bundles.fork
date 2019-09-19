@@ -1,5 +1,7 @@
-"if executable('ctags')
+if executable('ctags')
 "    Bundle 'xolox/vim-misc'
 "    Bundle 'xolox/vim-easytags'
-"endif
+endif
+
+Bundle 'fatih/vim-go'
 
