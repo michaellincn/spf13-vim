@@ -15,3 +15,10 @@ if !exists("g:spf13_bundle_groups")
 endif
 
 
+let g:lua_interpreter_path = '/usr/local/openresty/bin/resty'
+let $LUA_PATH = '/usr/local/openresty/lualib/resty/?.lua'
+let $LUA_CPATH = '/usr/local/openresty/lualib/?.so'
+let g:lua_complete_omni = 1 "支持c-x c-o快捷键
+set completeopt=longest,menu"
+
+let g:NERDTreeHijackNetrw=0

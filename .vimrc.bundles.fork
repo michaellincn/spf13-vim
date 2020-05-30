@@ -4,4 +4,8 @@ if executable('ctags')
 endif
 
 Bundle 'fatih/vim-go'
+Bundle 'spacewander/openresty-vim'
+Bundle 'xolox/vim-misc'
+Bundle 'https://git.oschina.net/iamdsy/vim-lua-ftplugin'
+
 

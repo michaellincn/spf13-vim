@@ -100,8 +100,10 @@
     " endif
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
-    set mouse=a                 " Automatically enable mouse usage
+    "set mouse=c                 " Automatically enable mouse usage
+    set mouse=c
     set mousehide               " Hide the mouse cursor while typing
+
     scriptencoding utf-8
 
     if has('clipboard')

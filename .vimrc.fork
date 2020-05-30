@@ -59,12 +59,14 @@ let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::
 
 " tags conf
 set autochdir
-set tags=tags;
+set tags+=~/.tags.d/stdc++.tags
+set tags+=~/.tags.d/glibc.tags
+set tags+=~/.tags.d/kernel.tags
 "tagbar conf
 nmap <F8> :TagbarToggle<CR>
 
 if has("cscope")
-    set csprg=/usr/local/app/cscope/bin/cscope
+    set csprg=/usr/bin/cscope
     set csto=0
     set cst
     set nocsverb
@@ -78,26 +80,28 @@ if has("cscope")
     set csverb
 
     "跳到定义
-    nmap ff <c-]>
+    "nmap ss <c-]>
     "返回
-    nmap ss <c-t>
+    map ss  <c-t>
 
-    "s:查找即查找C语言符号出现的地方
-    nmap fs :cs find s <C-R>=expand("<cword>")<CR><CR>
-    "g:查找函数、宏、枚举等定义的位置
-    nmap fg :cs find g <C-R>=expand("<cword>")<CR><CR>
-    "c:查找光标下的函数被调用的地方
+    "a: Find assignments to this symbol
+    nmap fa :cs find a <C-R>=expand("<cword>")<CR><CR>
+    "c: Find functions calling this function
     nmap fc :cs find c <C-R>=expand("<cword>")<CR><CR>
-    "t: 查找指定的字符串出现的地方
-    nmap ft :cs find t <C-R>=expand("<cword>")<CR><CR>
-    "e:egrep模式查找,相当于egrep功能
-    nmap fe :cs find e <C-R>=expand("<cword>")<CR><CR>
-    "f: 查找文件名,相当于lookupfile
-    nmap fn :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    "i: 查找当前文件名出现过的地方
-    nmap fi :cs find i <C-R>=expand("<cfile>")<CR><CR>
-    "d: 查找本当前函数调用的函数
+    "d: Find functions called by this function
     nmap fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+    "e: Find this egrep pattern
+    nmap fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+    "f: Find this file
+    nmap ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    "g: Find this definition
+    nmap fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+    "i: Find files #including this file
+    nmap fi :cs find i <C-R>=expand("<cfile>")<CR><CR>
+    "s: Find this C symbol
+    nmap fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+    "t: Find this text string
+    nmap ft :cs find t <C-R>=expand("<cword>")<CR><CR>
 
     "quickfix
     set cscopequickfix=s-,g-,c-,t-,e-,f-,i-,d-
@@ -117,3 +121,7 @@ let g:nerdtree_tabs_open_on_console_startup=1
 
 nnoremap <A-n> :tabn <CR>
 nnoremap <A-p> :tabp <CR>
+
+
+"autocmd BufRead,BufNewFile nginx*.conf.tpl set filetype=nginx
+
